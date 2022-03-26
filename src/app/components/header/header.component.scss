@@ -1,6 +1,16 @@
 header {
   text-align: center;
-  padding: 1rem 0;
+  padding: 2rem;
   background-color: var(--primary);
+}
+
+h1 {
+  font-size: 4rem;
   color: var(--secondary-variant);
+  text-transform: uppercase;
+}
+
+h2 {
+  margin-top: 0.8rem;
+  font-size: 1.8rem;
 }
