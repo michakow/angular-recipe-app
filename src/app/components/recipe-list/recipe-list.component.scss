@@ -1,5 +1,12 @@
 :host {
-  flex-basis: calc(50% - 8px);
-  height: 100%;
-  background-color: skyblue;
+  flex-basis: calc(50% - 0.8rem);
+  background-color: rgba(135, 206, 235, 0.2);
+  border-radius: 0.6rem;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  padding: 3rem;
 }

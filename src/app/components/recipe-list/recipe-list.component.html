@@ -1,2 +1,4 @@
 <p>recipe-list works!</p>
-<app-recipe-tile></app-recipe-tile>
+<div class="tiles">
+  <app-recipe-tile *ngFor="let recipe of recipeList" [recipe]="recipe"></app-recipe-tile>
+</div>
