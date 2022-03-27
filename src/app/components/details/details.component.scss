@@ -1,4 +1,80 @@
 :host {
-  flex-basis: calc(50% - 0.8rem);
-  background-color: green;
+  flex-grow: 1;
+  background-color: rgba(135, 206, 235, 0.2);
+  border-radius: 0.6rem;
+}
+
+.not-selected {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 3rem;
+}
+
+.first {
+  font-size: 2.6rem;
+}
+
+.second {
+  margin-top: 2.4rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.details {
+  height: 100%;
+  padding: 3rem;
+
+  & > p {
+    margin-top: 8rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2.8rem;
+}
+
+.name {
+  margin-right: 3rem;
+  font-weight: bold;
+}
+
+.rating {
+  flex-shrink: 0;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12rem;
+
+  & > div > p {
+    font-size: 2.4rem;
+
+    & > span {
+      margin-right: 0.6rem;
+    }
+  }
+}
+
+ul,
+ol {
+  margin-top: 1rem;
+  padding-left: 4rem;
+}
+li {
+  padding: 0.2rem;
+  font-size: 1.6rem;
+
+  & > span {
+    padding: 0 0.4rem;
+  }
 }

@@ -5,3 +5,50 @@
   justify-content: space-between;
   padding: 1.6rem;
 }
+
+.right-side {
+  flex-basis: calc(50% - 0.8rem);
+  display: flex;
+  flex-direction: column;
+
+  &-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.6rem;
+
+    & > span {
+      display: block;
+      background-color: black;
+      width: 1px;
+      height: 100%;
+    }
+  }
+}
+
+button {
+  flex-basis: 40%;
+  padding: 2rem;
+  font-size: 2rem;
+  border: 1px solid gray;
+  background-color: rgb(245, 245, 245);
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(235, 235, 235);
+  }
+
+  &:first-child {
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+  }
+
+  &:last-child {
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+  }
+
+  &.active {
+    background-color: var(--secondary-variant);
+  }
+}
