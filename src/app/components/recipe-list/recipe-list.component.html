@@ -1,4 +1,9 @@
-<p>recipe-list works!</p>
+<div class="list-panel">
+  <label>
+    <span>🔍️</span>
+    <input type="search" id="searchInput">
+  </label>
+</div>
 <div class="tiles">
-  <app-recipe-tile *ngFor="let recipe of recipeList" [recipe]="recipe"></app-recipe-tile>
+  <app-recipe-tile *ngFor="let recipe of (filtersActive ? recipeListToShow : recipeList)" [recipe]="recipe"></app-recipe-tile>
 </div>
