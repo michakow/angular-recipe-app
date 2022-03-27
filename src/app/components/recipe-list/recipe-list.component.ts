@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { debounceTime, filter, fromEvent, map } from 'rxjs';
+import { debounceTime, filter, fromEvent, map, tap } from 'rxjs';
 import { Recipe } from 'src/app/interfaces/recipe';
 import { RecipeApiService } from 'src/app/services/recipe-api.service';
 
@@ -27,17 +27,16 @@ export class RecipeListComponent implements OnInit, AfterViewInit {
     fromEvent(this.input, 'input').pipe(
       debounceTime(500),
       map(event => (event.target as HTMLInputElement).value),
-      map(value => {
+      map(value => value.trim()),
+      tap(value => {
         this.filtersActive = false;
         this.input.value = this.input.value.trim();
-        return value.trim()
       }),
       filter(value => value.length > 3),
     )
     .subscribe(searchValue => {
       this.filtersActive = true;
       this.recipeListToShow = this.recipeList.filter(recipe => recipe.name.includes(searchValue));
-      console.log(this.recipeListToShow)
     })
   }
 }
