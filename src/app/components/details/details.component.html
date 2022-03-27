@@ -1,1 +1,28 @@
-<p>{{ recipeToShow?.name || 'details works!'}}</p>
+<div *ngIf="!recipeToShow; else recipeDetails" class="not-selected">
+  <p class="first">Nie wybrano przepisu do wyświetlenia</p>
+  <p class="second">Wybierz interesujący Cię przepis z listy obok, aby zobaczyć szczegóły jego przyrządzenia.</p>
+</div>
+
+<ng-template #recipeDetails>
+  <div class="details">
+    <div class="heading">
+      <p class="name">{{recipeToShow.name | uppercaseFirstLetter}}</p>
+      <p class="rating">{{recipeToShow.rating | transformRatingToIcons}}</p>
+    </div>
+    <div class="info">
+      <div class="description">
+        <p><span>🧑‍🍳</span> Sposób przyrządzenia:</p>
+        <ol>
+          <li *ngFor="let step of recipeToShow.description">{{step | uppercaseFirstLetter}}</li>
+        </ol>
+      </div>
+      <div class="ingriedients">
+        <p><span>🛒</span> Potrzebne składniki:</p>
+        <ul>
+          <li *ngFor="let ingriedent of recipeToShow.ingriedients">{{ingriedent.name | uppercaseFirstLetter}} <span>-</span> {{ingriedent.value}}</li>
+        </ul>
+      </div>
+    </div>
+    <p>Smacznego!</p>
+  </div>
+</ng-template>
