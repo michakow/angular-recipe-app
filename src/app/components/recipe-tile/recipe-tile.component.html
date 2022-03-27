@@ -1,0 +1,4 @@
+<button (click)="selectRecipe(recipe)">
+  <p class="name">{{recipe.name | uppercaseFirstLetter}}</p>
+  <p class="rating">{{recipe.rating | transformRatingToIcons}}</p>
+</button>

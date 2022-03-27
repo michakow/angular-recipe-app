@@ -1,0 +1,40 @@
+:host {
+  flex-basis: calc(50% - 0.8rem);
+  background-color: rgba(135, 206, 235, 0.2);
+  border-radius: 0.6rem;
+}
+
+.list-panel {
+  padding: 1.4rem;
+  text-align: right;
+}
+
+label {
+  display: inline-block;
+  position: relative;
+}
+
+span {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  font-size: 1.6rem;
+  transform: translateY(-50%);
+}
+
+input[type="search"] {
+  padding: 1.2rem;
+  padding-left: 3rem;
+  font-size: 1.4rem;
+  border: 1px solid gray;
+  border-radius: 2rem;
+  outline: none;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  padding: 3rem;
+}

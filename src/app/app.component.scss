@@ -1,6 +1,5 @@
-header {
-  text-align: center;
-  padding: 1rem 0;
-  background-color: var(--primary);
-  color: var(--secondary-variant);
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }

@@ -12,12 +12,15 @@
   --primary-variant: #3a7ca5;
   --secondary: #16425b;
   --secondary-variant: #81c3d7;
-  --background: #d9dcd6;
+  --background: #e2e6de;
+}
+
+html {
+  font-size: 10px;
 }
 
 body {
   height: 100%;
-  font-size: 10px;
   font-family: "Lato", sans-serif;
   background-color: var(--background);
 }
