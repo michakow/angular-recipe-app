@@ -1,2 +1,9 @@
 <app-recipe-list></app-recipe-list>
-<app-details></app-details>
+<div class="right-side">
+  <nav class="right-side-nav">
+    <button routerLink="form" routerLinkActive="active">Dodaj przepis</button>
+    <span></span>
+    <button routerLink="details" routerLinkActive="active">Szczegóły</button>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
