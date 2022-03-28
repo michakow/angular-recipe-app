@@ -8,7 +8,11 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 })
 export class FormComponent implements OnInit, AfterViewInit {
   recipeForm!: FormGroup;
-  withoutIng: boolean = true;
+  descriptionPlaceholder: string = `Jak przygotować?
+  np.
+  1. obrać ziemniaki
+  2. wstawić na średni ogień
+  3. czekać 20 minut`;
 
   constructor(private formBuilder: FormBuilder) {}
 

@@ -5,7 +5,7 @@
     <p *ngIf="recipeForm.controls['name'].touched && recipeForm.controls['name'].errors?.['minlength']" class="error-message">Nazwa musi zawierać co najmniej 4 litery.</p>
   </label>
   <label>
-    <textarea name="" id="" rows="10" formControlName="description" placeholder="Jak przygotować?"></textarea>
+    <textarea name="" id="" rows="10" formControlName="description" [placeholder]="descriptionPlaceholder"></textarea>
     <p *ngIf="recipeForm.controls['description'].touched && recipeForm.controls['description'].errors" class="error-message">Nie podano opisu przyrządzenia.</p>
   </label>
   <div formArrayName="ingriedients" class="ingriedients">
