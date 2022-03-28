@@ -1,1 +1,28 @@
-<p>form works!</p>
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+  <label>
+    <input class="recipe-name" type="text" formControlName="name" placeholder="Nazwa przepisu">
+    <p *ngIf="recipeForm.controls['name'].touched && recipeForm.controls['name'].errors?.['required']" class="error-message">Nie podano nazwy.</p>
+    <p *ngIf="recipeForm.controls['name'].touched && recipeForm.controls['name'].errors?.['minlength']" class="error-message">Nazwa musi zawierać co najmniej 4 litery.</p>
+  </label>
+  <label>
+    <textarea name="" id="" rows="10" formControlName="description" [placeholder]="descriptionPlaceholder"></textarea>
+    <p *ngIf="recipeForm.controls['description'].touched && recipeForm.controls['description'].errors" class="error-message">Nie podano opisu przyrządzenia.</p>
+  </label>
+  <div formArrayName="ingriedients" class="ingriedients">
+    <ng-container *ngFor="let ingriedient of ingriedientsFormGroup; let index = index">
+      <div class="ingriedient" [formGroup]="ingriedient">
+        <label>
+          <input formControlName="ingName" type="text" placeholder="Składnik">
+          <p *ngIf="ingriedient.controls['ingName'].touched && ingriedient.controls['ingName'].errors" class="error-message">Nie podano nazwy.</p>
+        </label>
+        <label>
+          <input formControlName="ingValue" type="text" placeholder="Ile?">
+          <p *ngIf="ingriedient.controls['ingValue'].touched && ingriedient.controls['ingValue'].errors" class="error-message">Nie podano miary.</p>
+        </label>
+        <button *ngIf="ingriedientsFormArray.length > 1" (click)="removeIngriedient(index)" type="button">❌</button>
+      </div>
+    </ng-container>
+  </div>
+  <button type="button" class="ing-button" (click)="addNextIngriedient()">Następny składnik</button>
+  <button [disabled]="!recipeForm.valid">Dodaj</button>
+</form>
