@@ -1,5 +1,9 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FormData } from 'src/app/interfaces/form-data';
+import { Recipe } from 'src/app/interfaces/recipe';
+import { RecipeDetailsService } from 'src/app/services/recipe-details.service';
 
 @Component({
   selector: 'app-form',
@@ -8,13 +12,11 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 })
 export class FormComponent implements OnInit, AfterViewInit {
   recipeForm!: FormGroup;
-  descriptionPlaceholder: string = `Jak przygotować?
-  np.
-  1. obrać ziemniaki
-  2. wstawić na średni ogień
-  3. czekać 20 minut`;
+  newRecipe!: Recipe;
+  descriptionPlaceholder: string = `Jak przygotować? (wg wzoru)\n1. obrać ziemniaki\n2. wstawić na średni ogień\n3. czekać 20 minut`;
+  showModal: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private recipeDetailsService: RecipeDetailsService, private router: Router) {}
 
   get ingriedientsFormArray() {
     return this.recipeForm.controls['ingriedients'] as FormArray;
@@ -30,23 +32,44 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {}
 
-  addNextIngriedient() {
+  closeModal(rating: number): void{
+    this.newRecipe.rating = rating;
+    this.showModal = false;
+    this.recipeDetailsService.selectedRecipe.next(this.newRecipe);
+    this.router.navigate(['recipes','details']);
+    console.log(this.newRecipe);
+  }
+
+  addNextIngriedient(): void {
     this.ingriedientsFormArray.push(
       new FormGroup({
-        ingName: this.formBuilder.control('', [Validators.required]),
-        ingValue: this.formBuilder.control('', [Validators.required]),
+        name: this.formBuilder.control('', [Validators.required]),
+        value: this.formBuilder.control('', [Validators.required]),
       })
     );
   }
 
-  removeIngriedient(index: number) {
+  removeIngriedient(index: number): void {
     this.ingriedientsFormArray.removeAt(index);
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.recipeForm.markAllAsTouched();
     if (this.recipeForm.invalid) return;
-    console.log(this.recipeForm.value);
+    this.newRecipe = this.formatFormData(this.recipeForm.value);
+    this.showModal = true;
+  }
+
+  formatFormData(formData: FormData): Recipe {
+    const uuid: number = parseInt((new Date().getTime()).toString().substring(8));
+    const recipeWithoutRating: Recipe = {
+      name: formData.name,
+      description: formData.description.split('\n'),
+      ingriedients: formData.ingriedients,
+      id: uuid,
+      rating: 0,
+    }
+    return recipeWithoutRating;
   }
 
   private createForm(): FormGroup {
@@ -55,8 +78,8 @@ export class FormComponent implements OnInit, AfterViewInit {
       description: this.formBuilder.control('', [Validators.required]),
       ingriedients: this.formBuilder.array([
         this.formBuilder.group({
-          ingName: this.formBuilder.control('', [Validators.required]),
-          ingValue: this.formBuilder.control('', [Validators.required]),
+          name: this.formBuilder.control('', [Validators.required]),
+          value: this.formBuilder.control('', [Validators.required]),
         }),
       ]),
     }));
