@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TransformRatingToIconsPipe } from './pipes/transform-rating-to-icons.pipe';
 import { FormComponent } from './components/form/form.component';
 import { AdminGuard } from './guards/admin.guard';
+import { RecipRatingModalComponent } from './components/recip-rating-modal/recip-rating-modal.component';
 
 const routes: Routes = [
   {
@@ -44,7 +45,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, UppercaseFirstLetterPipe, HeaderComponent, MainComponent, RecipeListComponent, DetailsComponent, RecipeTileComponent, FooterComponent, TransformRatingToIconsPipe, FormComponent],
+  declarations: [AppComponent, UppercaseFirstLetterPipe, HeaderComponent, MainComponent, RecipeListComponent, DetailsComponent, RecipeTileComponent, FooterComponent, TransformRatingToIconsPipe, FormComponent, RecipRatingModalComponent],
   imports: [BrowserModule, HttpClientModule, ReactiveFormsModule, RouterModule.forRoot(routes)],
   providers: [],
   bootstrap: [AppComponent],
