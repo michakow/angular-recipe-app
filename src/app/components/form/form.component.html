@@ -12,12 +12,12 @@
     <ng-container *ngFor="let ingriedient of ingriedientsFormGroup; let index = index">
       <div class="ingriedient" [formGroup]="ingriedient">
         <label>
-          <input formControlName="ingName" type="text" placeholder="Składnik">
-          <p *ngIf="ingriedient.controls['ingName'].touched && ingriedient.controls['ingName'].errors" class="error-message">Nie podano nazwy.</p>
+          <input formControlName="name" type="text" placeholder="Składnik">
+          <p *ngIf="ingriedient.controls['name'].touched && ingriedient.controls['name'].errors" class="error-message">Nie podano nazwy.</p>
         </label>
         <label>
-          <input formControlName="ingValue" type="text" placeholder="Ile?">
-          <p *ngIf="ingriedient.controls['ingValue'].touched && ingriedient.controls['ingValue'].errors" class="error-message">Nie podano miary.</p>
+          <input formControlName="value" type="text" placeholder="Ile?">
+          <p *ngIf="ingriedient.controls['value'].touched && ingriedient.controls['value'].errors" class="error-message">Nie podano miary.</p>
         </label>
         <button *ngIf="ingriedientsFormArray.length > 1" (click)="removeIngriedient(index)" type="button">❌</button>
       </div>
@@ -26,3 +26,4 @@
   <button type="button" class="ing-button" (click)="addNextIngriedient()">Następny składnik</button>
   <button [disabled]="!recipeForm.valid">Dodaj</button>
 </form>
+<app-recip-rating-modal *ngIf="showModal" (modalEvent)="closeModal($event)"></app-recip-rating-modal>

@@ -1,0 +1,7 @@
+<div>
+  <p>Oceń ten przepis</p>
+  <p>
+    <button *ngFor="let heart of hearts; let index = index" (click)="setRating(index)">{{heart}}</button>
+  </p>
+  <button (click)="closeModal()">Zapisz</button>
+</div>
