@@ -18,6 +18,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { RecipRatingModalComponent } from './components/recip-rating-modal/recip-rating-modal.component';
 import { LoginPanelComponent } from './components/login-panel/login-panel.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -28,10 +29,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPanelComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'recipes',
     component: MainComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'form',
