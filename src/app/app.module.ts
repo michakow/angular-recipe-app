@@ -17,6 +17,7 @@ import { FormComponent } from './components/form/form.component';
 import { AdminGuard } from './guards/admin.guard';
 import { RecipRatingModalComponent } from './components/recip-rating-modal/recip-rating-modal.component';
 import { LoginPanelComponent } from './components/login-panel/login-panel.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,7 @@ const routes: Routes = [
     FormComponent,
     RecipRatingModalComponent,
     LoginPanelComponent,
+    LoaderComponent,
   ],
   imports: [BrowserModule, HttpClientModule, ReactiveFormsModule, RouterModule.forRoot(routes)],
   providers: [],

@@ -1,0 +1,24 @@
+:host {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div {
+  width: 240px;
+  height: 240px;
+  border: 3.2rem solid rgb(207, 213, 219);
+  border-top: 3.2rem solid rgb(118, 158, 199);
+  border-radius: 50%;
+  animation: spin 1.7s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

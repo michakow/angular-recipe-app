@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { catchError, debounceTime, filter, fromEvent, map, of, tap } from 'rxjs';
+import { catchError, debounceTime, delay, filter, fromEvent, map, of, tap } from 'rxjs';
 import { Recipe } from 'src/app/interfaces/recipe';
 import { RecipeApiService } from 'src/app/services/recipe-api.service';
 
@@ -21,7 +21,10 @@ export class RecipeListComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.recipeApiService
       .getRecipes()
-      .pipe(catchError((err: HttpErrorResponse) => of(err)))
+      .pipe(
+        delay(500),
+        catchError((err: HttpErrorResponse) => of(err))
+      )
       .subscribe((res) => {
         if (res instanceof HttpErrorResponse) this.isHttpError = true;
         else this.recipeList = res;
