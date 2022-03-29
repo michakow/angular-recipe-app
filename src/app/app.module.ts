@@ -16,12 +16,17 @@ import { TransformRatingToIconsPipe } from './pipes/transform-rating-to-icons.pi
 import { FormComponent } from './components/form/form.component';
 import { AdminGuard } from './guards/admin.guard';
 import { RecipRatingModalComponent } from './components/recip-rating-modal/recip-rating-modal.component';
+import { LoginPanelComponent } from './components/login-panel/login-panel.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'recipes',
-    pathMatch: 'full'
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginPanelComponent,
   },
   {
     path: 'recipes',
@@ -30,22 +35,35 @@ const routes: Routes = [
       {
         path: 'form',
         component: FormComponent,
-        canActivate: [AdminGuard]
+        canActivate: [AdminGuard],
       },
       {
         path: 'details',
-        component: DetailsComponent
-      }
-    ]
+        component: DetailsComponent,
+      },
+    ],
   },
   {
     path: '**',
-    redirectTo: 'recipes'
-  }
+    redirectTo: 'recipes',
+  },
 ];
 
 @NgModule({
-  declarations: [AppComponent, UppercaseFirstLetterPipe, HeaderComponent, MainComponent, RecipeListComponent, DetailsComponent, RecipeTileComponent, FooterComponent, TransformRatingToIconsPipe, FormComponent, RecipRatingModalComponent],
+  declarations: [
+    AppComponent,
+    UppercaseFirstLetterPipe,
+    HeaderComponent,
+    MainComponent,
+    RecipeListComponent,
+    DetailsComponent,
+    RecipeTileComponent,
+    FooterComponent,
+    TransformRatingToIconsPipe,
+    FormComponent,
+    RecipRatingModalComponent,
+    LoginPanelComponent,
+  ],
   imports: [BrowserModule, HttpClientModule, ReactiveFormsModule, RouterModule.forRoot(routes)],
   providers: [],
   bootstrap: [AppComponent],
