@@ -1,1 +1,17 @@
-<p>login-panel works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <label>
+    <input type="text" formControlName="login" placeholder="Email">
+    <p *ngIf="loginForm.controls['login'].touched && loginForm.controls['login'].errors?.['required']" class="error-message">Nie podano loginu.</p>
+    <p *ngIf="loginForm.controls['login'].touched && loginForm.controls['login'].errors?.['pattern']" class="error-message">Niepoprawny format loginu (nazwa@poczta.pl)</p>
+  </label>
+  <label>
+    <input type="password" formControlName="password" placeholder="Hasło">
+    <p *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors" class="error-message">Nie podano nazwy.</p>
+  </label>
+  <div>
+    <span><button type="button" (click)="remindPassword()">Przypomnij hasło</button></span>
+    <span></span>
+    <span><button type="button" (click)="goToRegister()">Zarejestruj się</button></span>
+  </div>
+  <button [disabled]="loginForm.invalid">Zaloguj</button>
+</form>
