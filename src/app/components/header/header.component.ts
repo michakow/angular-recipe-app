@@ -1,15 +1,23 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   @Input() appName!: string;
-  constructor() { }
+  logged: boolean = !!localStorage.getItem('logged');
+  userName: string = this.logged ? localStorage.getItem('userName')! : '';
 
-  ngOnInit(): void {
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {}
+
+  logOut() {
+    this.logged = false;
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
-
 }
