@@ -1,4 +1,8 @@
 <header>
   <h1>{{ appName }}</h1>
   <h2>Twoje kulinarne El Dorado!</h2>
+  <div class="user-info" *ngIf="logged">
+    <p class="user-name">{{userName}}</p>
+    <button (click)="logOut()">Wyloguj</button>
+  </div>
 </header>
