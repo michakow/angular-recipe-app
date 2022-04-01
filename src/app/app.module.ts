@@ -19,6 +19,7 @@ import { RecipRatingModalComponent } from './components/recip-rating-modal/recip
 import { LoginPanelComponent } from './components/login-panel/login-panel.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LoginPanelGuard } from './guards/login-panel.guard';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPanelComponent,
-    canActivate: [AuthGuard],
+    canActivate: [LoginPanelGuard],
   },
   {
     path: 'recipes',
