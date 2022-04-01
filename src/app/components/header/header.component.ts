@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   @Input() appName!: string;
   logged: boolean = !!localStorage.getItem('logged');
-  userName: string = this.logged ? localStorage.getItem('userName')! : '';
+  userName: string = this.logged ? JSON.parse(localStorage.getItem('userName')!) : '';
 
   constructor(private router: Router) {}
 
