@@ -19,4 +19,8 @@ export class RecipeApiService {
   getRecipesWithName(name: string){
     return this.http.get<Recipe[]>(`http://localhost:3000/recipes?name_like=${name}`);
   }
+
+  addRecipe(recipe: Recipe){
+    return this.http.post<Recipe>('http://localhost:3000/recipes', {...recipe});
+  }
 }

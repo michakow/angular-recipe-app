@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, of } from 'rxjs';
 import { Recipe } from 'src/app/interfaces/recipe';
 import { RecipeApiService } from 'src/app/services/recipe-api.service';
@@ -15,7 +15,7 @@ export class DetailsComponent implements OnInit {
   recipeToShow!: Recipe;
   isHttpError: boolean = false;
 
-  constructor(private recipeDetailsService: RecipeDetailsService, private recipeApiSerivce: RecipeApiService, private route: ActivatedRoute) {}
+  constructor(private recipeDetailsService: RecipeDetailsService, private recipeApiSerivce: RecipeApiService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -29,6 +29,6 @@ export class DetailsComponent implements OnInit {
           });
       }
     });
-    this.recipeDetailsService.selectedRecipe.subscribe((recipe) => (this.recipeToShow = recipe));
+    this.recipeDetailsService.selectedRecipe.subscribe((recipe) => this.router.navigate(['recipes','details',recipe.id]));
   }
 }

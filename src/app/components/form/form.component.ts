@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Router } from '@angular/router';
 import { FormData } from 'src/app/interfaces/form-data';
 import { Recipe } from 'src/app/interfaces/recipe';
+import { RecipeApiService } from 'src/app/services/recipe-api.service';
 import { RecipeDetailsService } from 'src/app/services/recipe-details.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   descriptionPlaceholder: string = `Jak przygotować? (wg wzoru)\n1. obrać ziemniaki\n2. wstawić na średni ogień\n3. czekać 20 minut`;
   showModal: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private recipeDetailsService: RecipeDetailsService, private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private recipeDetailsService: RecipeDetailsService, private router: Router, private recipeApiService: RecipeApiService) {}
 
   get ingriedientsFormArray() {
     return this.recipeForm.controls['ingriedients'] as FormArray;
@@ -36,8 +37,8 @@ export class FormComponent implements OnInit, AfterViewInit {
     this.newRecipe.rating = rating;
     this.showModal = false;
     this.recipeDetailsService.selectedRecipe.next(this.newRecipe);
-    this.router.navigate(['recipes','details']);
-    console.log(this.newRecipe);
+
+    this.recipeApiService.addRecipe(this.newRecipe).subscribe(res => this.router.navigate(['recipes','details',res.id]));
   }
 
   addNextIngriedient(): void {
