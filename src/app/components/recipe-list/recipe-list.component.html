@@ -7,7 +7,7 @@
 <app-loader *ngIf="recipeList.length === 0 && !isHttpError"></app-loader>
 <ng-container *ngIf="!isHttpError; else httpErrorInfo">
   <div class="tiles">
-    <app-recipe-tile *ngFor="let recipe of (filtersActive ? recipeListToShow : recipeList)" [recipe]="recipe"></app-recipe-tile>
+    <app-recipe-tile *ngFor="let recipe of recipeList" [recipe]="recipe"></app-recipe-tile>
   </div>
 </ng-container>
 

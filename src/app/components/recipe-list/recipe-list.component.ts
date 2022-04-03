@@ -11,8 +11,6 @@ import { RecipeApiService } from 'src/app/services/recipe-api.service';
 })
 export class RecipeListComponent implements OnInit, AfterViewInit {
   recipeList: Recipe[] = [];
-  recipeListToShow: Recipe[] = [];
-  filtersActive: boolean = false;
   input!: HTMLInputElement;
   isHttpError: boolean = false;
 
@@ -42,14 +40,34 @@ export class RecipeListComponent implements OnInit, AfterViewInit {
         map((value) => value.trim()),
         map((value) => value.toLowerCase()),
         tap((value) => {
-          this.filtersActive = false;
+          if(value.length > 3) this.recipeList = [];
           this.input.value = this.input.value.trim();
+          if(value.length === 0){
+            this.recipeList = [];
+            this.recipeApiService
+            .getRecipes()
+            .pipe(
+              delay(300),
+              catchError((err: HttpErrorResponse) => of(err))
+            )
+            .subscribe((res) => {
+              if (res instanceof HttpErrorResponse) this.isHttpError = true;
+              else this.recipeList = res;
+            });
+          }
         }),
         filter((value) => value.length > 3)
       )
       .subscribe((searchValue) => {
-        this.filtersActive = true;
-        this.recipeListToShow = this.recipeList.filter((recipe) => recipe.name.includes(searchValue));
+        this.recipeApiService.getRecipesWithName(searchValue)
+        .pipe(
+          delay(300),
+          catchError((err: HttpErrorResponse) => of(err))
+        )
+        .subscribe(res => {
+          if (res instanceof HttpErrorResponse) this.isHttpError = true;
+          else this.recipeList = res;
+        })
       });
   }
 }

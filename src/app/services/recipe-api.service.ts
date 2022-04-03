@@ -15,4 +15,8 @@ export class RecipeApiService {
   getRecipeByID(id: number) {
     return this.http.get<Recipe>(`http://localhost:3000/recipes/${id}`);
   }
+
+  getRecipesWithName(name: string){
+    return this.http.get<Recipe[]>(`http://localhost:3000/recipes?name_like=${name}`);
+  }
 }
