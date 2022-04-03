@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -8,16 +9,18 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   @Input() appName!: string;
-  logged: boolean = !!localStorage.getItem('logged');
-  userName: string = this.logged ? JSON.parse(localStorage.getItem('userName')!) : '';
+  logged!: boolean;
+  userName!: string;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.logged = this.userService.isLogged();
+    this.userName = this.userService.getName();
+  }
 
   logOut() {
-    this.logged = false;
     localStorage.clear();
-    this.router.navigate(['login']);
+    window.location.reload();
   }
 }

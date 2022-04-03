@@ -45,6 +45,15 @@ input {
   color: rgb(255, 17, 65);
 }
 
+.bad-login-message{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  font-size: 1.2rem;
+  color: rgb(255, 17, 65);
+  transform: translateX(-50%);
+}
+
 button {
   width: 20rem;
   padding: 2rem;

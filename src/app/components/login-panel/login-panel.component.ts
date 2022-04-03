@@ -2,6 +2,7 @@ import { LocalizedString } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login-panel',
@@ -10,19 +11,24 @@ import { Router } from '@angular/router';
 })
 export class LoginPanelComponent implements OnInit {
   loginForm!: FormGroup;
+  badLoginData: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.loginForm = this.createForm();
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.loginForm.markAllAsTouched();
     if (this.loginForm.invalid) return;
-    localStorage.setItem('logged', 'true');
-    localStorage.setItem('userName', JSON.stringify(this.loginForm.value.login));
-    this.router.navigate(['recipes']);
+    this.userService.signIn(this.loginForm.value.login, this.loginForm.value.password).subscribe(value => {
+      if(value) window.location.reload();
+      else {
+        this.badLoginData = true;
+        setTimeout(() => this.badLoginData = false, 2500)
+      }
+    })
   }
 
   remindPassword() {

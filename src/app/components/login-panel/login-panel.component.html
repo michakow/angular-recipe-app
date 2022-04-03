@@ -2,7 +2,7 @@
   <label>
     <input type="text" formControlName="login" placeholder="Email">
     <p *ngIf="loginForm.controls['login'].touched && loginForm.controls['login'].errors?.['required']" class="error-message">Nie podano loginu.</p>
-    <p *ngIf="loginForm.controls['login'].touched && loginForm.controls['login'].errors?.['pattern']" class="error-message">Niepoprawny format loginu (nazwa@poczta.pl)</p>
+    <p *ngIf="loginForm.controls['login'].touched && loginForm.controls['login'].errors?.['pattern']" class="error-message">Niepoprawny format loginu (nazwa@poczta.pl).</p>
   </label>
   <label>
     <input type="password" formControlName="password" placeholder="Hasło">
@@ -14,4 +14,5 @@
     <span><button type="button" (click)="goToRegister()">Zarejestruj się</button></span>
   </div>
   <button [disabled]="loginForm.invalid">Zaloguj</button>
+  <p *ngIf="badLoginData" class="bad-login-message">Niepoprawny login lub hasło.</p>
 </form>
