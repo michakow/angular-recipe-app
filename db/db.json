@@ -23,7 +23,8 @@
           "value": "150g"
         }
       ],
-      "rating": 4
+      "rating": 4,
+      "author": "autor@poczta.pl"
     },
     {
       "id": 2,
@@ -43,7 +44,8 @@
           "value": "łyżeczka"
         }
       ],
-      "rating": 5
+      "rating": 5,
+      "author": "autor@poczta.pl"
     },
     {
       "id": 3,
@@ -63,7 +65,8 @@
           "value": "łyżeczka"
         }
       ],
-      "rating": 5
+      "rating": 5,
+      "author": "autor@poczta.pl"
     },
     {
       "id": 4,
@@ -83,7 +86,8 @@
           "value": "łyżeczka"
         }
       ],
-      "rating": 1
+      "rating": 1,
+      "author": "autor@poczta.pl"
     },
     {
       "id": 5,
@@ -103,7 +107,8 @@
           "value": "łyżeczka"
         }
       ],
-      "rating": 3
+      "rating": 3,
+      "author": "autor@poczta.pl"
     },
     {
       "name": "kurczak",
@@ -120,7 +125,8 @@
         }
       ],
       "id": 56043,
-      "rating": 4
+      "rating": 4,
+      "author": "autor@poczta.pl"
     },
     {
       "name": "boczek",
@@ -135,24 +141,28 @@
         }
       ],
       "id": 25310,
-      "rating": 4
+      "rating": 4,
+      "author": "autor@poczta.pl"
     }
   ],
   "users": [
     {
       "id": 1,
       "name": "user1@poczta.pl",
-      "password": "zaq1@WSX"
+      "password": "zaq1@WSX",
+      "role": "user"
     },
     {
       "id": 2,
       "name": "user2@poczta.pl",
-      "password": "zaq1@WSX"
+      "password": "zaq1@WSX",
+      "role": "user"
     },
     {
       "id": 3,
       "name": "autor@poczta.pl",
-      "password": "zaq1@WSX"
+      "password": "zaq1@WSX",
+      "role": "author"
     }
   ]
 }
