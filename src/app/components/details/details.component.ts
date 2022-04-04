@@ -15,7 +15,12 @@ export class DetailsComponent implements OnInit {
   recipeToShow!: Recipe;
   isHttpError: boolean = false;
 
-  constructor(private recipeDetailsService: RecipeDetailsService, private recipeApiSerivce: RecipeApiService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private recipeDetailsService: RecipeDetailsService,
+    private recipeApiSerivce: RecipeApiService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -25,10 +30,13 @@ export class DetailsComponent implements OnInit {
           .pipe(catchError((err: HttpErrorResponse) => of(err)))
           .subscribe((res) => {
             if (res instanceof HttpErrorResponse) this.isHttpError = true;
-            else this.recipeToShow = res;
+            else {
+              this.recipeToShow = res;
+              this.recipeDetailsService.selectedRecipe.next(res);
+            }
           });
       }
     });
-    this.recipeDetailsService.selectedRecipe.subscribe((recipe) => this.router.navigate(['recipes','details',recipe.id]));
+    this.recipeDetailsService.selectedRecipe.subscribe((recipe) => this.router.navigate(['recipes', 'details', recipe.id]));
   }
 }
