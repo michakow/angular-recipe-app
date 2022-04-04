@@ -13,6 +13,7 @@ export class RecipeListComponent implements OnInit, AfterViewInit {
   recipeList: Recipe[] = [];
   input!: HTMLInputElement;
   isHttpError: boolean = false;
+  noResult: boolean = false;
 
   constructor(private recipeApiService: RecipeApiService) {}
 
@@ -40,34 +41,45 @@ export class RecipeListComponent implements OnInit, AfterViewInit {
         map((value) => value.trim()),
         map((value) => value.toLowerCase()),
         tap((value) => {
-          if(value.length > 3) this.recipeList = [];
-          this.input.value = this.input.value.trim();
-          if(value.length === 0){
+          if (value.length > 3) {
             this.recipeList = [];
+            this.noResult = false;
+          }
+          this.input.value = this.input.value.trim();
+          if (value.length === 0) {
+            this.recipeList = [];
+            this.noResult = false;
             this.recipeApiService
-            .getRecipes()
-            .pipe(
-              delay(300),
-              catchError((err: HttpErrorResponse) => of(err))
-            )
-            .subscribe((res) => {
-              if (res instanceof HttpErrorResponse) this.isHttpError = true;
-              else this.recipeList = res;
-            });
+              .getRecipes()
+              .pipe(
+                delay(300),
+                catchError((err: HttpErrorResponse) => of(err))
+              )
+              .subscribe((res) => {
+                if (res instanceof HttpErrorResponse) this.isHttpError = true;
+                else {
+                  this.recipeList = res;
+                  if (res.length === 0) this.noResult = true;
+                }
+              });
           }
         }),
         filter((value) => value.length > 3)
       )
       .subscribe((searchValue) => {
-        this.recipeApiService.getRecipesWithName(searchValue)
-        .pipe(
-          delay(300),
-          catchError((err: HttpErrorResponse) => of(err))
-        )
-        .subscribe(res => {
-          if (res instanceof HttpErrorResponse) this.isHttpError = true;
-          else this.recipeList = res;
-        })
+        this.recipeApiService
+          .getRecipesWithName(searchValue)
+          .pipe(
+            delay(300),
+            catchError((err: HttpErrorResponse) => of(err))
+          )
+          .subscribe((res) => {
+            if (res instanceof HttpErrorResponse) this.isHttpError = true;
+            else {
+              this.recipeList = res;
+              if (res.length === 0) this.noResult = true;
+            }
+          });
       });
   }
 }
