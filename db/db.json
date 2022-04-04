@@ -1,0 +1,158 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "name": "kluski z twarogiem",
+      "description": [
+        "Przygotowujemy garnek wody i solimy go",
+        "Gotujemy wodę",
+        "Gotujemy makaron",
+        "Do ugatowanego makaronu dodajemy twaróg"
+      ],
+      "ingriedients": [
+        {
+          "name": "makaron",
+          "value": "250g"
+        },
+        {
+          "name": "sól",
+          "value": "szczypta"
+        },
+        {
+          "name": "twaróg",
+          "value": "150g"
+        }
+      ],
+      "rating": 4
+    },
+    {
+      "id": 2,
+      "name": "jajecznica",
+      "description": [
+        "Rozpuszczamy masło na patelni",
+        "Rozbijamy jajka i dodajemy (uwaga! bez skorupki!)",
+        "Mieszamy rozbite jajka i czekamy na jajecznice"
+      ],
+      "ingriedients": [
+        {
+          "name": "jajka",
+          "value": "3 szt."
+        },
+        {
+          "name": "masło",
+          "value": "łyżeczka"
+        }
+      ],
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "name": "bigos",
+      "description": [
+        "Rozpuszczamy masło na patelni",
+        "Rozbijamy jajka i dodajemy (uwaga! bez skorupki!)",
+        "Mieszamy rozbite jajka i czekamy na jajecznice"
+      ],
+      "ingriedients": [
+        {
+          "name": "jajka",
+          "value": "3 szt."
+        },
+        {
+          "name": "masło",
+          "value": "łyżeczka"
+        }
+      ],
+      "rating": 5
+    },
+    {
+      "id": 4,
+      "name": "pasztet",
+      "description": [
+        "Rozpuszczamy masło na patelni",
+        "Rozbijamy jajka i dodajemy (uwaga! bez skorupki!)",
+        "Mieszamy rozbite jajka i czekamy na jajecznice"
+      ],
+      "ingriedients": [
+        {
+          "name": "jajka",
+          "value": "3 szt."
+        },
+        {
+          "name": "masło",
+          "value": "łyżeczka"
+        }
+      ],
+      "rating": 1
+    },
+    {
+      "id": 5,
+      "name": "płatki z mlekiem",
+      "description": [
+        "Rozpuszczamy masło na patelni",
+        "Rozbijamy jajka i dodajemy (uwaga! bez skorupki!)",
+        "Mieszamy rozbite jajka i czekamy na jajecznice"
+      ],
+      "ingriedients": [
+        {
+          "name": "jajka",
+          "value": "3 szt."
+        },
+        {
+          "name": "masło",
+          "value": "łyżeczka"
+        }
+      ],
+      "rating": 3
+    },
+    {
+      "name": "kurczak",
+      "description": [
+        "krok 1",
+        "krok 2",
+        "krok 3",
+        "..dalej"
+      ],
+      "ingriedients": [
+        {
+          "name": "kurczak",
+          "value": "400g"
+        }
+      ],
+      "id": 56043,
+      "rating": 4
+    },
+    {
+      "name": "boczek",
+      "description": [
+        "krok 1",
+        "krok 2"
+      ],
+      "ingriedients": [
+        {
+          "name": "boczek",
+          "value": "600g"
+        }
+      ],
+      "id": 25310,
+      "rating": 4
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "user1@poczta.pl",
+      "password": "zaq1@WSX"
+    },
+    {
+      "id": 2,
+      "name": "user2@poczta.pl",
+      "password": "zaq1@WSX"
+    },
+    {
+      "id": 3,
+      "name": "autor@poczta.pl",
+      "password": "zaq1@WSX"
+    }
+  ]
+}
