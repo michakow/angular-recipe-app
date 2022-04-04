@@ -4,7 +4,11 @@
     <input type="search" id="searchInput">
   </label>
 </div>
-<app-loader *ngIf="recipeList.length === 0 && !isHttpError"></app-loader>
+<app-loader *ngIf="recipeList.length === 0 && !isHttpError && !noResult"></app-loader>
+<div *ngIf="noResult" class="server-error">
+  <p>Brak wyników <span>:(</span></p>
+  <p>Nie znaleziono przepisów odpowiadających wpisanej nazwie.</p>
+</div>
 <ng-container *ngIf="!isHttpError; else httpErrorInfo">
   <div class="tiles">
     <app-recipe-tile *ngFor="let recipe of recipeList" [recipe]="recipe"></app-recipe-tile>
