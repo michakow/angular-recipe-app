@@ -48,6 +48,11 @@ button {
     border-radius: 0 8px 8px 0;
   }
 
+  &.oneButton {
+    border: 1px solid gray;
+    border-radius: 8px;
+  }
+
   &.active {
     background-color: var(--secondary-variant);
   }
