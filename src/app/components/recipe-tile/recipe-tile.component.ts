@@ -18,6 +18,6 @@ export class RecipeTileComponent implements OnInit {
 
   selectRecipe(recipe: Recipe){
     this.recipeDetailsService.selectedRecipe.next(recipe);
-    this.router.navigate(['recipes','details']);
+    this.router.navigate(['recipes','details',recipe.id]);
   }
 }

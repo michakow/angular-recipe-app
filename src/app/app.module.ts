@@ -14,38 +14,66 @@ import { RecipeTileComponent } from './components/recipe-tile/recipe-tile.compon
 import { FooterComponent } from './components/footer/footer.component';
 import { TransformRatingToIconsPipe } from './pipes/transform-rating-to-icons.pipe';
 import { FormComponent } from './components/form/form.component';
-import { AdminGuard } from './guards/admin.guard';
 import { RecipRatingModalComponent } from './components/recip-rating-modal/recip-rating-modal.component';
+import { LoginPanelComponent } from './components/login-panel/login-panel.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginPanelGuard } from './guards/login-panel.guard';
+import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'recipes',
-    pathMatch: 'full'
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginPanelComponent,
+    canActivate: [LoginPanelGuard],
   },
   {
     path: 'recipes',
     component: MainComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'form',
         component: FormComponent,
-        canActivate: [AdminGuard]
+        canActivate: [RoleGuard],
       },
       {
         path: 'details',
-        component: DetailsComponent
-      }
-    ]
+        component: DetailsComponent,
+      },
+      {
+        path: 'details/:id',
+        component: DetailsComponent,
+      },
+    ],
   },
   {
     path: '**',
-    redirectTo: 'recipes'
-  }
+    redirectTo: 'recipes',
+  },
 ];
 
 @NgModule({
-  declarations: [AppComponent, UppercaseFirstLetterPipe, HeaderComponent, MainComponent, RecipeListComponent, DetailsComponent, RecipeTileComponent, FooterComponent, TransformRatingToIconsPipe, FormComponent, RecipRatingModalComponent],
+  declarations: [
+    AppComponent,
+    UppercaseFirstLetterPipe,
+    HeaderComponent,
+    MainComponent,
+    RecipeListComponent,
+    DetailsComponent,
+    RecipeTileComponent,
+    FooterComponent,
+    TransformRatingToIconsPipe,
+    FormComponent,
+    RecipRatingModalComponent,
+    LoginPanelComponent,
+    LoaderComponent,
+  ],
   imports: [BrowserModule, HttpClientModule, ReactiveFormsModule, RouterModule.forRoot(routes)],
   providers: [],
   bootstrap: [AppComponent],

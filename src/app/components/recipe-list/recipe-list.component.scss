@@ -2,6 +2,7 @@
   flex-basis: calc(50% - 0.8rem);
   background-color: rgba(135, 206, 235, 0.2);
   border-radius: 0.6rem;
+  position: relative;
 }
 
 .list-panel {
@@ -14,7 +15,7 @@ label {
   position: relative;
 }
 
-span {
+span.search-icon {
   display: block;
   position: absolute;
   top: 50%;
@@ -40,4 +41,22 @@ input[type="search"] {
   justify-content: center;
   gap: 3rem;
   padding: 3rem;
+}
+
+.server-error {
+  font-size: 1.8rem;
+  padding: 3rem;
+
+  & > p:first-child {
+    font-size: 2.6rem;
+    font-weight: bold;
+
+    & > span {
+      margin-left: 1rem;
+    }
+  }
+
+  & p:last-child {
+    margin-top: 2rem;
+  }
 }

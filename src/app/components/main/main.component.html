@@ -1,9 +1,11 @@
 <app-recipe-list></app-recipe-list>
 <div class="right-side">
   <nav class="right-side-nav">
-    <button routerLink="form" routerLinkActive="active">Dodaj przepis</button>
-    <span></span>
-    <button routerLink="details" routerLinkActive="active">Szczegóły</button>
+    <ng-container *ngIf="canAddRecipe">
+      <button routerLink="form" routerLinkActive="active">Dodaj przepis</button>
+      <span></span>
+    </ng-container>
+    <button [ngClass]="!canAddRecipe ? 'oneButton' : ''" routerLink="details" routerLinkActive="active">Szczegóły</button>
   </nav>
   <router-outlet></router-outlet>
 </div>

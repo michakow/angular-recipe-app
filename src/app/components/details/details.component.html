@@ -6,7 +6,10 @@
 <ng-template #recipeDetails>
   <div class="details">
     <div class="heading">
-      <p class="name">{{recipeToShow.name | uppercaseFirstLetter}}</p>
+      <div>
+        <p class="name">{{recipeToShow.name | uppercaseFirstLetter}}</p>
+        <p class="author">Autor: {{recipeToShow.author}}</p>
+      </div>
       <p class="rating">{{recipeToShow.rating | transformRatingToIcons}}</p>
     </div>
     <div class="info">

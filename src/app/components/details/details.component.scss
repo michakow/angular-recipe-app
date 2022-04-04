@@ -47,6 +47,11 @@
   font-weight: bold;
 }
 
+.author {
+  margin-top: 0.8rem;
+  font-size: 1.8rem;
+}
+
 .rating {
   flex-shrink: 0;
 }
@@ -54,7 +59,7 @@
 .info {
   display: flex;
   justify-content: space-between;
-  margin-top: 12rem;
+  margin-top: 11rem;
 
   & > div > p {
     font-size: 2.4rem;

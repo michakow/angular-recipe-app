@@ -1,9 +1,19 @@
 <div class="list-panel">
   <label>
-    <span>🔍️</span>
+    <span class="search-icon">🔍️</span>
     <input type="search" id="searchInput">
   </label>
 </div>
-<div class="tiles">
-  <app-recipe-tile *ngFor="let recipe of (filtersActive ? recipeListToShow : recipeList)" [recipe]="recipe"></app-recipe-tile>
-</div>
+<app-loader *ngIf="recipeList.length === 0 && !isHttpError"></app-loader>
+<ng-container *ngIf="!isHttpError; else httpErrorInfo">
+  <div class="tiles">
+    <app-recipe-tile *ngFor="let recipe of recipeList" [recipe]="recipe"></app-recipe-tile>
+  </div>
+</ng-container>
+
+<ng-template #httpErrorInfo>
+  <div class="server-error">
+    <p>Coś poszło nie tak.. <span>:(</span></p>
+    <p>Nie udało się pobrać danych z serwera, spróbuj ponownie później.</p>
+  </div>
+</ng-template>
