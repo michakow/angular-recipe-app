@@ -1,4 +1,9 @@
 <div class="list-panel">
+  <select [formControl]="sortControl">
+    <option *ngFor="let option of sortOptions" [value]="option.value">
+      {{ option.label }}
+    </option>
+  </select>
   <label>
     <span class="search-icon">🔍️</span>
     <input type="search" id="searchInput">

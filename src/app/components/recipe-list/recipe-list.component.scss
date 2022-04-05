@@ -24,7 +24,8 @@ span.search-icon {
   transform: translateY(-50%);
 }
 
-input[type="search"] {
+input[type="search"],
+select {
   padding: 1.2rem;
   width: 240px;
   padding-left: 3rem;
@@ -33,6 +34,11 @@ input[type="search"] {
   background-color: rgb(245, 245, 245);
   border-radius: 2rem;
   outline: none;
+}
+
+select {
+  padding-left: 1.2rem;
+  margin-right: 2rem;
 }
 
 .tiles {

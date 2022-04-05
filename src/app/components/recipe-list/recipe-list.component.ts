@@ -1,8 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { catchError, debounceTime, delay, filter, fromEvent, map, of, tap } from 'rxjs';
 import { Recipe } from 'src/app/interfaces/recipe';
 import { RecipeApiService } from 'src/app/services/recipe-api.service';
+
+export interface SortOption {
+  value: string;
+  label: string;
+}
 
 @Component({
   selector: 'app-recipe-list',
@@ -15,11 +21,35 @@ export class RecipeListComponent implements OnInit, AfterViewInit {
   isHttpError: boolean = false;
   noResult: boolean = false;
 
+  sortControl = new FormControl('');
+  selectedSortOption: SortOption = {
+    value: '',
+    label: '',
+  };
+  sortOptions: SortOption[] = [
+    {
+      value: 'name,asc',
+      label: 'sortuj a-z',
+    },
+    {
+      value: 'name,desc',
+      label: 'sortuj z-a',
+    },
+    {
+      value: 'rating,desc',
+      label: 'sortuj oceny malejeco',
+    },
+    {
+      value: 'rating,asc',
+      label: 'sortuj oceny rosnaco',
+    },
+  ];
+
   constructor(private recipeApiService: RecipeApiService) {}
 
   ngOnInit(): void {
     this.recipeApiService
-      .getRecipes()
+      .getRecipes(this.selectedSortOption)
       .pipe(
         delay(500),
         catchError((err: HttpErrorResponse) => of(err))
@@ -28,6 +58,19 @@ export class RecipeListComponent implements OnInit, AfterViewInit {
         if (res instanceof HttpErrorResponse) this.isHttpError = true;
         else this.recipeList = res;
       });
+
+    this.sortControl.valueChanges.pipe(map((value: string) => value.split(','))).subscribe(([label, value]) => {
+      this.selectedSortOption = { label, value };
+      console.log(this.selectedSortOption);
+      console.log(this.sortControl.value);
+      this.recipeApiService
+        .getRecipes(this.selectedSortOption)
+        .pipe(catchError((err: HttpErrorResponse) => of(err)))
+        .subscribe((res) => {
+          if (res instanceof HttpErrorResponse) this.isHttpError = true;
+          else this.recipeList = res;
+        });
+    });
   }
 
   ngAfterViewInit(): void {
@@ -50,7 +93,7 @@ export class RecipeListComponent implements OnInit, AfterViewInit {
             this.recipeList = [];
             this.noResult = false;
             this.recipeApiService
-              .getRecipes()
+              .getRecipes(this.selectedSortOption)
               .pipe(
                 delay(300),
                 catchError((err: HttpErrorResponse) => of(err))
@@ -68,7 +111,7 @@ export class RecipeListComponent implements OnInit, AfterViewInit {
       )
       .subscribe((searchValue) => {
         this.recipeApiService
-          .getRecipesWithName(searchValue)
+          .getRecipesWithName(searchValue, this.selectedSortOption)
           .pipe(
             delay(300),
             catchError((err: HttpErrorResponse) => of(err))
